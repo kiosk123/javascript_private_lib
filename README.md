@@ -10,10 +10,10 @@ ECMA6 문법으로 작성
 JQuery의 $(document).ready(callback)의 [자바스크립트 버전](https://stackoverflow.com/questions/9899372/pure-javascript-equivalent-of-jquerys-ready-how-to-call-a-function-when-t)
 
 ```
-    // 1.함수 레퍼런스를 전달
+    // 1. 함수 레퍼런스를 전달
     COMMON.documentReady(function);
 
-    // 2.람다를 전달
+    // 2. 람다를 전달
     COMMON.documentReady(function() {
         // code here
     });
