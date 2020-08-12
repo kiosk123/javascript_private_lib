@@ -15,7 +15,7 @@ JQuery의 $(document).ready(callback)의 [자바스크립트 버전](https://sta
 
     // 2. 람다를 전달
     COMMON.documentReady(function() {
-        // code here
+        // ...
     });
 
     // 3. 함수 레퍼런스와 함수의 레퍼런스의 첫번째 파라미터(context)를 전달
@@ -23,7 +23,7 @@ JQuery의 $(document).ready(callback)의 [자바스크립트 버전](https://sta
 
     // 4. 3번을 람다로 처리
     COMMON.documentReady((context) => {
-        // code here that can use the context argument that was passed to documentReady
+        //...
     }, context);
 ```
 
