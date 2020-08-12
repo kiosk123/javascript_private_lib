@@ -21,19 +21,19 @@ const COMMON = {};
         // code here that can use the context argument that was passed to documentReady
     }, ctx);
 */
-(function(funcName, baseObj) {
+((funcName, baseObj) => {
     // The public function name defaults to window.documentReady
     // but you can pass in your own object and own function name and those will be used
     // if you want to put them in a different namespace
     funcName = funcName || "documentReady";
     baseObj = baseObj || window;
-    var readyList = [];
-    var readyFired = false;
-    var readyEventHandlersInstalled = false;
+    let readyList = [];
+    let readyFired = false;
+    let readyEventHandlersInstalled = false;
 
     // call this when the document is ready
     // this function protects itself against being called more than once
-    function ready() {
+    const ready = () => {
         if (!readyFired) {
             // this must be set to true before we start calling callbacks
             readyFired = true;
@@ -51,7 +51,7 @@ const COMMON = {};
         }
     }
 
-    function readyStateChange() {
+    const readyStateChange = () => {
         if ( document.readyState === "complete" ) {
             ready();
         }
@@ -61,7 +61,7 @@ const COMMON = {};
     // documentReady(fn, context);
     // the context argument is optional - if present, it will be passed
     // as an argument to the callback
-    baseObj[funcName] = function(callback, context) {
+    baseObj[funcName] = (callback, context) => {
         if (typeof callback !== "function") {
             throw new TypeError("callback for documentReady(fn) must be a function");
         }
