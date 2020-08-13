@@ -5,12 +5,26 @@
         COMMON.documentReady(() => {
             document.querySelector("#container").textContent = "Hello World!";
             document.querySelector("#container").style.color = 'red';
+            let targets = document.querySelectorAll("#section > div");
+            for (let target of targets) {
+                target.addEventListener('click',() => {
+                    console.log(target.parentElement.querySelectorAll("div"));
+                });
+            }
         });
     </script>
 </head>
 <body>
     <p id="container">
-        
+
     </p>
+    <div id="section">
+        <div>first</div>
+        <div>second</div>
+        <div>third</div>
+        <div>fourth</div>
+        <div>fifth</div>
+    </div>
+
 </body>
 </html>
