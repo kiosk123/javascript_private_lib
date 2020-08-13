@@ -1,88 +1,55 @@
 
 'use strict'
-const COMMON = {};
 
-/**
-   JQuery $(document).ready(callback)과 동일하게 쓰임
-   // pass a function reference
-    documentReady(fn);
+class COMMON {
+    static #isReady = false;
 
-    // use an anonymous function
-    documentReady(function() {
-        // code here
-    });
+    /**
+     * JQuery의 $(document).ready(callback)과 같은 역할을 하는 함수. 
+     * 페이지 로드 완료 후 딱 한번 실행시킨다.
+     * @param {*} callback 페이지 로드 완료 후 실행시킬 콜백함수 
+     * @param {*} context  callack 함수에 전달되는 파라미터
+     */
+    static documentReady(callback, context) {
+        if (this.#isReady === true) {
+            return;
+        }
+        this.#isReady = true;
+        let readyList = [];
+        let readyFired = false;
+        let readyEventHandlersInstalled = false;
 
-    // pass a function reference and a context
-    // the context will be passed to the function as the first argument
-    documentReady(fn, context);
-
-    // use an anonymous function with a context
-    documentReady(function(context) {
-        // code here that can use the context argument that was passed to documentReady
-    }, ctx);
-*/
-((funcName, baseObj) => {
-    // The public function name defaults to window.documentReady
-    // but you can pass in your own object and own function name and those will be used
-    // if you want to put them in a different namespace
-    funcName = funcName || "documentReady";
-    baseObj = baseObj || window;
-    let readyList = [];
-    let readyFired = false;
-    let readyEventHandlersInstalled = false;
-
-    // call this when the document is ready
-    // this function protects itself against being called more than once
-    const ready = () => {
-        if (!readyFired) {
-            // this must be set to true before we start calling callbacks
-            readyFired = true;
-            for (let i = 0; i < readyList.length; i++) {
-                // if a callback here happens to add new ready handlers,
-                // the documentReady() function will see that it already fired
-                // and will schedule the callback to run right after
-                // this event loop finishes so all handlers will still execute
-                // in order and no new ones will be added to the readyList
-                // while we are processing the list
-                readyList[i].fn.call(window, readyList[i].ctx);
+        const ready = () => {
+            if (!readyFired) {
+                readyFired = true;
+                for (let i = 0; i < readyList.length; i++) {
+                    readyList[i].fn.call(window, readyList[i].ctx);
+                }
+                readyList = [];
             }
-            // allow any closures held by these functions to free
-            readyList = [];
         }
-    }
 
-    const readyStateChange = () => {
-        if ( document.readyState === "complete" ) {
-            ready();
+        const readyStateChange = () => {
+            if (document.readyState === "complete") {
+                ready();
+            }
         }
-    }
 
-    // This is the one public interface
-    // documentReady(fn, context);
-    // the context argument is optional - if present, it will be passed
-    // as an argument to the callback
-    baseObj[funcName] = (callback, context) => {
         if (typeof callback !== "function") {
             throw new TypeError("callback for documentReady(fn) must be a function");
         }
-        // if ready has already fired, then just schedule the callback
-        // to fire asynchronously, but right away
+
         if (readyFired) {
-            setTimeout(function() {callback(context);}, 1);
+            setTimeout(function () { callback(context); }, 1);
             return;
         } else {
-            // add the function and context to the list
-            readyList.push({fn: callback, ctx: context});
+            readyList.push({ fn: callback, ctx: context });
         }
-        // if document already ready to go, schedule the ready function to run
         if (document.readyState === "complete") {
             setTimeout(ready, 1);
         } else if (!readyEventHandlersInstalled) {
-            // otherwise if we don't have event handlers installed, install them
             if (document.addEventListener) {
-                // first choice is DOMContentLoaded event
                 document.addEventListener("DOMContentLoaded", ready, false);
-                // backup is window load event
                 window.addEventListener("load", ready, false);
             } else {
                 // must be IE
@@ -92,4 +59,4 @@ const COMMON = {};
             readyEventHandlersInstalled = true;
         }
     }
-})("documentReady", COMMON);
+}

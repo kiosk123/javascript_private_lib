@@ -8,7 +8,8 @@
             let targets = document.querySelectorAll("#section > div");
             for (let target of targets) {
                 target.addEventListener('click',() => {
-                    console.log(target.parentElement.querySelectorAll("div"));
+                    // console.log(target.parentElement.querySelectorAll("div"));
+                    console.log(target.textContent);
                 });
             }
         });
