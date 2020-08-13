@@ -37,7 +37,7 @@ const COMMON = {};
         if (!readyFired) {
             // this must be set to true before we start calling callbacks
             readyFired = true;
-            for (var i = 0; i < readyList.length; i++) {
+            for (let i = 0; i < readyList.length; i++) {
                 // if a callback here happens to add new ready handlers,
                 // the documentReady() function will see that it already fired
                 // and will schedule the callback to run right after
