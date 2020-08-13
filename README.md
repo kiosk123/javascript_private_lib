@@ -14,7 +14,7 @@ JQuery의 $(document).ready(callback)의 [자바스크립트 버전](https://sta
     COMMON.documentReady(function);
 
     // 2. 람다를 전달
-    COMMON.documentReady(function() {
+    COMMON.documentReady(() => {
         // ...
     });
 
