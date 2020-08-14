@@ -1,7 +1,7 @@
 # 자바스크립트 private 라이브러리
 
 개인용도로 사용할 javascript 모듈이나 기능들을 구현함  
-ECMA6 문법으로 작성
+ECMA6 vanilla-js로 작성
 
 ## utils.js
 공통용도로 사용할 함수를 구현함

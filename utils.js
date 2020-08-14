@@ -63,7 +63,7 @@ class Utils {
     /**
      * DOM을 선택한다. JQuery $(selector)와 역할이 같다
      * @param {*} sel DOM 선택자(string) 이다.
-     * @param {*} scope DOM 선택 범위가 되는 엘리먼트다. 지정하지 않으면 document가 된다.
+     * @param {*} scope DOM 선택 범위 기준이 되는 엘리먼트다. 지정하지 않으면 document가 된다.
      * @return 선택된 DOM이 있으면 DOM 리스트를 반환, 없으면 undefined를 반환한다.
      */
     static selector(sel, scope) {
