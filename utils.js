@@ -149,7 +149,7 @@ class Utils {
      * @param {*} callback  바인드한 이벤트 발생시 실행되는 callback (function) : callback(dom, window.event) 
      * @param {*} o 이벤트를 바인드할 DOM 또는 선택자 (string or DOM object)
      */
-    static bind(evt, callback, o) {
+    static bindEvent(evt, callback, o) {
         if ("string" !== typeof evt) {
             throw "bind() first parameter requires type string";
         }
