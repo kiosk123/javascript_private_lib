@@ -59,4 +59,28 @@ class COMMON {
             readyEventHandlersInstalled = true;
         }
     }
+
+    /**
+     * DOM을 선택한다. JQuery $(selector)와 역할이 같다
+     * @param {*} sel DOM을 선택하기 위한 string 값이다.
+     * @param {*} scope DOM 선택 범위가 되는 엘리먼트다. 지정하지 않으면 document가 된다.
+     * return 선택된 DOM이 있으면 DOM 리스트를 반환 없으면 undefined를 반환
+     */
+    static selector(sel, scope) {
+        if (!sel) {
+            throw "selector requires at least 1 parameter : first parameter is select string";
+        }
+
+        if (typeof sel !== "string") {
+            throw "first parameter must be string";
+        }
+
+        if (scope && typeof scope !== "object") {
+            throw "second parameter must be object : second parameter requires element object";
+        }
+
+        const elem = scope || document;
+        const ret = elem.querySelectorAll(sel);
+        return (ret.length > 0) ? ret : undefined;
+    }
 }
