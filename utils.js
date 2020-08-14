@@ -143,4 +143,41 @@ class Utils {
             }
         }
     }
+    /**
+     * DOM에 이벤트를 바인드 한다.
+     * @param {*} evt 바인드할 이벤트명 (string) ex) click [mouseover ][... ]
+     * @param {*} callback  바인드한 이벤트 발생시 실행되는 callback (function) : callback(dom, window.event) 
+     * @param {*} o 이벤트를 바인드할 DOM 또는 선택자 (string or DOM object)
+     */
+    static bind(evt, callback, o) {
+        if ("string" !== typeof evt) {
+            throw "bind() first parameter requires type string";
+        }
+
+        if ("function" !== typeof callback) {
+            throw "bind() second parameter requires type function";
+        }
+
+        if ("string" !== typeof o && "object" !== typeof o) {
+            throw "bind() third parameter requires type string or object";
+        }
+
+        const elem = ("string" === typeof o) ? document.querySelectorAll(o) : o;
+        const evts = evt.trim().split(/\s/g);
+        if (elem instanceof NodeList) { 
+            for (let ele of elem) {
+                for (let e of evts) {
+                    ele.addEventListener(e, () => {
+                        callback(ele, window.event);
+                    });
+                }
+            }
+        } else {
+            for (let e of evts) {
+                ele.addEventListener(e, () => {
+                    callback(ele, window.event);
+                });
+            }
+        }
+    }
 }
