@@ -174,8 +174,8 @@ class Utils {
             }
         } else {
             for (let e of evts) {
-                ele.addEventListener(e, () => {
-                    callback(ele, window.event);
+                elem.addEventListener(e, () => {
+                    callback(elem, window.event);
                 });
             }
         }
