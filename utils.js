@@ -1,7 +1,7 @@
 
 'use strict'
 
-class COMMON {
+class Utils {
     static #isReady = false;
 
     /**
@@ -91,8 +91,8 @@ class COMMON {
      * @param secend 파라미터가 second까지만 사용되면 second 파라미터는 string 타입의 DOM 선택자 또는 DOM이며, third까지 사용되면 css property value이다.
      * @param third DOM선택자 또는 DOM이다
      * ex) 
-     * COMMON.css('color', 'red', 'p')
-     * COMMON.css({'color':'blue', 'font-size':'12px'},'p')
+     * Utils.css('color', 'red', 'p')
+     * Utils.css({'color':'blue', 'font-size':'12px'},'p')
      */
     static css() {
         if (arguments.length === 3) {

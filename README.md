@@ -3,7 +3,7 @@
 개인용도로 사용할 javascript 모듈이나 기능들을 구현함  
 ECMA6 문법으로 작성
 
-## common.js
+## utils.js
 공통용도로 사용할 함수를 구현함
 
 * documentReady(callback, ctx)
@@ -11,18 +11,18 @@ JQuery의 $(document).ready(callback)의 [자바스크립트 버전](https://sta
 
 ```
     // 1. 함수 레퍼런스를 전달
-    COMMON.documentReady(function);
+    Utils.documentReady(function);
 
     // 2. 람다를 전달
-    COMMON.documentReady(() => {
+    Utils.documentReady(() => {
         // ...
     });
 
     // 3. 함수 레퍼런스와 함수의 레퍼런스의 첫번째 파라미터(context)를 전달
-    COMMON.documentReady(function, context);
+    Utils.documentReady(function, context);
 
     // 4. 3번을 람다로 처리
-    COMMON.documentReady((context) => {
+    Utils.documentReady((context) => {
         //...
     }, context);
 ```
